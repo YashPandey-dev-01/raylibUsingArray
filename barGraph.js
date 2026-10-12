@@ -44,14 +44,18 @@ function drawBar(w, scalingFactor) {
 
 }
 
-function drawAvgLine(w, scalingFactor) {
+function calcAvg(arr) {
   let sum = 0;
 
-  for (let i of w.data) {
+  for (let i of arr) {
     sum = sum + i;
   }
 
-  const avg = sum / w.data.length;
+  return sum / arr.length;
+}
+
+function drawAvgLine(w, scalingFactor) {
+  const avg = calcAvg(w.data);
   const y = w.HEIGHT - avg * scalingFactor;
 
   r.DrawLine(0, y, w.WIDTH, y, w.colorPalette.avgLine);
